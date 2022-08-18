@@ -26,6 +26,13 @@ class CurlHttpClient implements TransportClient {
             CURLOPT_CONNECTTIMEOUT => $connection_timeout,
             CURLOPT_RETURNTRANSFER => true,
         );
+        
+        if (defined('PROXY_SERVERPORT')) {
+            $this->initial_opts[CURLOPT_PROXY] = PROXY_SERVERPORT;
+        }
+        if (defined('PROXY_USERPASS')) {
+            $this->initial_opts[CURLOPT_PROXYUSERPWD] = PROXY_USERPASS;
+        }
     }
 
     /**
